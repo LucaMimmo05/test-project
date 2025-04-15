@@ -1,27 +1,34 @@
 import React from "react";
+import Card from "./Card";
 
 function Employee() {
-    const url = "http://its.digitalminds.cloud/Dipendenti.json";
-
     const dataRequest = async () => {
         try {
-            const response = await fetch(url);
+            const response = await fetch(
+                "http://its.digitalminds.cloud/Dipendenti.json"
+            );
 
             if (!response.ok) {
-                throw new Error("errore: " + response.status);
+                throw new Error("Errore status: " + response.status);
             }
 
             const json = response.json();
 
-            console.log(json);
+            drawEmployee(json);
         } catch (error) {
-            console.log(error);
+            console.log("Errore try/catch: " + error);
         }
     };
 
     dataRequest();
 
-    return <div>Employee</div>;
+    const drawEmployee = (json) => {};
+
+    return (
+        <div>
+            <Card />
+        </div>
+    );
 }
 
 export default Employee;

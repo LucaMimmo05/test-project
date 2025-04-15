@@ -49,7 +49,15 @@ function Employee() {
         dataRequest();
     }, []);
 
-    return <div></div>;
+    return (
+        <div>
+            <h1 style={{ textAlign: "center" }}>Tutti i dipendenti</h1>
+            <br />
+            {employees.map((employee, index) => (
+                <Card key={index} employer={employee} />
+            ))}
+        </div>
+    );
 }
 
 export default Employee;

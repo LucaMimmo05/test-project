@@ -9,3 +9,22 @@
 .about-section {
     margin-top: 4rem;
 }
+
+.modal-abs {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.modal-abs::before {
+    content: "";
+    background-color: #00000099;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

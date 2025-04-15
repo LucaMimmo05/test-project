@@ -7,29 +7,37 @@ function Employee() {
     useEffect(() => {
         const dataRequest = async () => {
             try {
-                const response = await fetch("http://its.digitalminds.cloud/Dipendenti.json");
+                const response = await fetch(
+                    "http://its.digitalminds.cloud/Dipendenti.json"
+                );
 
                 if (!response.ok) {
-                    throw new Error(`Errore nella richiesta: ${response.statusText}`);
+                    throw new Error(
+                        `Errore nella richiesta: ${response.statusText}`
+                    );
                 }
 
                 const data = await response.json();
 
-                const directors = data.filter(emp => emp.categoria === "dirigente" || emp.categoria === "manager");
+                const directors = data.filter(
+                    (emp) =>
+                        emp.categoria === "dirigente" ||
+                        emp.categoria === "manager"
+                );
 
                 const codeToNameMap = {};
-                directors.forEach(dir => {
+                directors.forEach((dir) => {
                     codeToNameMap[dir.codiceFiscale] = dir.nome;
                 });
 
-                
-                const filteredEmployees = data.map(employee => ({
+                const filteredEmployees = data.map((employee) => ({
                     category: employee.categoria,
                     name: employee.nome,
                     surname: employee.cognome,
                     cf: employee.codiceFiscale,
                     hireDate: employee.dataAssunzione,
-                    referralName: codeToNameMap[employee.nomeRiferimento] || "N/A"
+                    referralName:
+                        codeToNameMap[employee.nomeRiferimento] || "N/A",
                 }));
 
                 setEmployees(filteredEmployees);
@@ -41,17 +49,7 @@ function Employee() {
         dataRequest();
     }, []);
 
-    return (
-        <div>
-            <h1 style={{ textAlign: "center" }}>Tutti i dipendenti</h1>
-            <br />
-            {legends.map((legend, index) => (
-                <Card key={index} employer={legend} />
-            {employees.map((employee, index) => (
-                <Card key={index} employer={employee} />
-            ))}
-        </div>
-    );
+    return <div></div>;
 }
 
 export default Employee;

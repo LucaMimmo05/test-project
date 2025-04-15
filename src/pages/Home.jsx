@@ -18,7 +18,7 @@ function Home() {
         const messaggio = document.getElementById("messaggio");
         event.preventDefault();
 
-        if (nome && cognome && email && messaggio) {
+        if (nome.value && cognome.value && email.value && messaggio.value) {
             console.log(
                 nome.value +
                     " " +
@@ -28,11 +28,25 @@ function Home() {
                     " " +
                     messaggio.value
             );
+
+            nome.value = "";
+            cognome.value = "";
+            email.value = "";
+            messaggio.value = "";
+
+            modalPopup.style.display = "block";
         }
     }
 
+    function setModalOverlayTransparency(alpha) {
+        const modal = document.getElementById("modalPopup");
+        const color = `rgba(0, 0, 0, ${alpha})`; // e.g. alpha = 0.3
+        modal.style.setProperty("--overlay-color", color);
+    }
+
     function popUp() {
-        const modalPopup = document.getElementById("modalPopup");
+        setModalOverlayTransparency(0.2);
+        modalPopup.style.display = "none"; // makes the overlay lighter
     }
 
     useEffect(() => {
@@ -61,7 +75,6 @@ function Home() {
 
             case "legend":
                 return <Legend />;
-            
 
             default:
                 return (
@@ -97,6 +110,7 @@ function Home() {
                                             type="button"
                                             class="btn btn-lg btn-primary"
                                             data-bs-dismiss="modal"
+                                            onClick={() => popUp()}
                                         >
                                             Close
                                         </button>

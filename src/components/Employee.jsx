@@ -22,7 +22,6 @@ function Employee() {
                     codeToNameMap[dir.codiceFiscale] = dir.nome;
                 });
 
-                
                 const filteredEmployees = data.map(employee => ({
                     category: employee.categoria,
                     name: employee.nome,
@@ -45,8 +44,6 @@ function Employee() {
         <div>
             <h1 style={{ textAlign: "center" }}>Tutti i dipendenti</h1>
             <br />
-            {legends.map((legend, index) => (
-                <Card key={index} employer={legend} />
             {employees.map((employee, index) => (
                 <Card key={index} employer={employee} />
             ))}

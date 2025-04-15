@@ -51,6 +51,10 @@ function Legend() {
 
     return (
         <div>
+            <h1 style={{ textAlign: "center" }}>
+                Dipendenti che lavorano dal 2001
+            </h1>
+            <br />
             {legends.map((legend, index) => (
                 <Card key={index} employer={legend} />
             ))}

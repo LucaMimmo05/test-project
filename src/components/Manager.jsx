@@ -52,8 +52,12 @@ function Manager() {
         dataRequest();
     }, []);
 
+    
+
     return (
         <div>
+            <h1 style={{ textAlign: "center" }}>Tutti i Manager</h1>
+            <br />
             {managers.map((manager, index) => (
                 <Card key={index} employer={manager} />
             ))}

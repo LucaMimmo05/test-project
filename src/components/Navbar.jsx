@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/navbar.css";
 
 function Navbar() {
     const handleClick = (role) => {
@@ -21,7 +20,7 @@ function Navbar() {
                     className="nav-link active"
                     aria-current="page"
                 >
-                    Tutti i Dipendenti
+                    Employee
                 </a>
                 <a
                     className="nav-link"
@@ -35,21 +34,14 @@ function Navbar() {
                     id="director"
                     onClick={() => handleClick("director")}
                 >
-                    Direttori
+                    Director
                 </a>
                 <a
                     className="nav-link"
                     id="legend"
                     onClick={() => handleClick("legend")}
                 >
-                    Leggende
-                </a>
-                <a
-                    className="nav-link"
-                    id="legend"
-                    onClick={() => handleClick("technical")}
-                >
-                    Tecnici
+                    Legend
                 </a>
             </div>
         </nav>

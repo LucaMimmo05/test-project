@@ -43,6 +43,10 @@ function Employee() {
 
     return (
         <div>
+            <h1 style={{ textAlign: "center" }}>Tutti i dipendenti</h1>
+            <br />
+            {legends.map((legend, index) => (
+                <Card key={index} employer={legend} />
             {employees.map((employee, index) => (
                 <Card key={index} employer={employee} />
             ))}

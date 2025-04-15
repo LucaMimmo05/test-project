@@ -46,6 +46,8 @@ function Director() {
 
     return (
         <div>
+            <h1 style={{ textAlign: "center" }}>Tutti i Dirigenti</h1>
+            <br />
             {directors.map((director, index) => (
                 <Card key={index} employer={director} />
             ))}

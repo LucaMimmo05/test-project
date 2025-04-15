@@ -2,11 +2,11 @@ import React from "react";
 import "../styles/navbar.css";
 
 function Navbar() {
-    const handleClick = (type) => {
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set("role", type);
-        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-        window.history.pushState({}, "", newUrl);
+    const handleClick = (role) => {
+        const url = new URL(window.location);
+        url.searchParams.set("role", role);
+        window.history.pushState({}, '', url);
+        window.dispatchEvent(new PopStateEvent("popstate"));
     };
 
     return (

@@ -43,8 +43,9 @@ function Legend() {
                 category: legend.categoria,
                 name: legend.nome,
                 surname: legend.cognome,
+                cf:legend.codiceFiscale,
                 hireDate: legend.dataAssunzione,
-                referralCode: legend.nomeRiferimento,
+                referralCode: legend.nomeRiferimento
             }));
     };
 

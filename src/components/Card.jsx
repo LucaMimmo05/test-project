@@ -9,7 +9,7 @@ function Card({employer}) {
         <p className="card-text">
         Hire date:{employer.hireDate} 
         CF: { employer.cf}
-        Refferal code : {employer.refferalCode}
+        Refferal code : {employer.referralCode}
         </p>
         
     </div>

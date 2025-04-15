@@ -1,32 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
 function Employee() {
-    const dataRequest = async () => {
-        try {
-            const response = await fetch(
-                "http://its.digitalminds.cloud/Dipendenti.json"
-            );
+    const [legends, setLegends] = useState([]);
+    useEffect(() => {
+        const dataRequest = async () => {
+            try {
+                const response = await fetch(
+                    `http://its.digitalminds.cloud/Dipendenti.json`
+                );
 
-            if (!response.ok) {
-                throw new Error("Errore status: " + response.status);
+                if (!response.ok) {
+                    throw new Error(
+                        `Errore nella richiesta, ${response.message}`
+                    );
+                }
+
+                const data = await response.json();
+
+                const filteredLegends = drawLegend(data);
+                setLegends(filteredLegends);
+
+                console.log(data);
+            } catch (error) {
+                console.log(error);
             }
+        };
+        dataRequest();
+    }, []);
 
-            const json = response.json();
-
-            drawEmployee(json);
-        } catch (error) {
-            console.log("Errore try/catch: " + error);
-        }
+    const drawLegend = (legends) => {
+        return legends.map((legend) => ({
+            category: legend.categoria,
+            name: legend.nome,
+            surname: legend.cognome,
+            hireDate: legend.dataAssunzione,
+            referralCode: legend.nomeRiferimento,
+        }));
     };
-
-    dataRequest();
-
-    const drawEmployee = (json) => {};
 
     return (
         <div>
-            <Card />
+            {legends.map((legend, index) => (
+                <Card key={index} legend={legend} />
+            ))}
         </div>
     );
 }

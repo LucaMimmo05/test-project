@@ -33,7 +33,7 @@ function Manager() {
 
     const drawManager = (managers) => {
         return managers
-            .filter((manager) => manager.categoria === "manager") 
+            .filter((manager) => manager.categoria === "manager")
             .map((manager) => ({
                 category: manager.categoria,
                 name: manager.nome,
@@ -45,6 +45,8 @@ function Manager() {
 
     return (
         <div>
+            <h1 style={{ textAlign: "center" }}>Tutti i Manager</h1>
+            <br />
             {managers.map((legend, index) => (
                 <Card key={index} employer={legend} />
             ))}

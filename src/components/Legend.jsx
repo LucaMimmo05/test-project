@@ -51,7 +51,7 @@ function Legend() {
     return (
         <div>
             {legends.map((legend, index) => (
-                <Card key={index} legend={legend} />
+                <Card key={index} employer={legend} />
             ))}
         </div>
     );

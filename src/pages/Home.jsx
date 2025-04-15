@@ -11,6 +11,30 @@ function Home() {
         new URLSearchParams(window.location.search).get("role")
     );
 
+    function checkValues(event) {
+        const nome = document.getElementById("nome");
+        const cognome = document.getElementById("cognome");
+        const email = document.getElementById("email");
+        const messaggio = document.getElementById("messaggio");
+        event.preventDefault();
+
+        if (nome && cognome && email && messaggio) {
+            console.log(
+                nome.value +
+                    " " +
+                    cognome.value +
+                    " " +
+                    email.value +
+                    " " +
+                    messaggio.value
+            );
+        }
+    }
+
+    function popUp() {
+        const modalPopup = document.getElementById("modalPopup");
+    }
+
     useEffect(() => {
         const onPopState = () => {
             const params = new URLSearchParams(window.location.search);
@@ -41,6 +65,44 @@ function Home() {
             default:
                 return (
                     <>
+                        <div
+                            class="modal modal-sheet position-static d-block p-4 py-md-5"
+                            tabindex="-1"
+                            role="dialog"
+                            id="background"
+                        >
+                            <div class="modal-abs modal-dialog" id="modalPopup">
+                                <div class="modal-content rounded-4 shadow">
+                                    <div class="modal-header border-bottom-0">
+                                        <h1 class="modal-title fs-5">
+                                            La tua lettera è stata mandata
+                                        </h1>
+                                        <button
+                                            onClick={() => popUp()}
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body py-0">
+                                        <p>
+                                            Grazie per averci mandato la lettera
+                                            di richiamo, a presto!
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                                        <button
+                                            type="button"
+                                            class="btn btn-lg btn-primary"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <section class="hero px-4 py-5 text-center">
                             <h1 class="display-5 fw-bold text-body-emphasis">
                                 Soluzioni Digitali, Persone Reali
@@ -170,6 +232,90 @@ function Home() {
                                 </div>
                             </div>
                         </section>
+
+                        <div
+                            class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5"
+                            tabindex="-1"
+                            role="dialog"
+                            id="modalSignin"
+                        >
+                            <div class="modal-dialog">
+                                <div class="modal-content rounded-4 shadow">
+                                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                                        <h1 class="fw-bold mb-0 fs-2">
+                                            Lettera di richiamo
+                                        </h1>
+                                    </div>
+
+                                    <div class="modal-body p-5 pt-0">
+                                        <form class="">
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    type="text"
+                                                    class="form-control rounded-3"
+                                                    id="nome"
+                                                    placeholder="name@example.com"
+                                                    required
+                                                ></input>
+                                                <label for="floatingInput">
+                                                    Nome
+                                                </label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    type="text"
+                                                    class="form-control rounded-3"
+                                                    id="cognome"
+                                                    placeholder="name@example.com"
+                                                    required
+                                                ></input>
+                                                <label for="floatingInput">
+                                                    Cognome
+                                                </label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input
+                                                    type="email"
+                                                    class="form-control rounded-3"
+                                                    id="email"
+                                                    placeholder="name@example.com"
+                                                    required
+                                                ></input>
+                                                <label for="floatingInput">
+                                                    Email
+                                                </label>
+                                            </div>
+                                            <div className="form-floating mb-3">
+                                                <textarea
+                                                    className="form-control rounded-3"
+                                                    placeholder="Leave a message here"
+                                                    id="messaggio"
+                                                    style={{ height: "100px" }}
+                                                    required
+                                                ></textarea>
+                                                <label htmlFor="floatingTextarea">
+                                                    Messaggio
+                                                </label>
+                                            </div>
+                                            <button
+                                                class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+                                                type="submit"
+                                                onClick={() =>
+                                                    checkValues(event)
+                                                }
+                                            >
+                                                Invia
+                                            </button>
+                                            <small class="text-body-secondary">
+                                                Cliccando Invia, stai
+                                                dichiarando di ricevere email da
+                                                parte di IncAgency.
+                                            </small>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="container">
                             <footer class="py-5">

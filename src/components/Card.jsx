@@ -13,7 +13,7 @@ function Card({ employer }) {
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
-                        Hire date:{employer.hireDate}
+                        Hire date: {employer.hireDate}
                     </li>
                     <li className="list-group-item">CF: {employer.cf}</li>
                     <li className="list-group-item">

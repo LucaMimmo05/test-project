@@ -1,6 +1,13 @@
 import React from "react";
 
 function Navbar() {
+    const handleClick = (type) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("role", type);
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+        window.history.pushState({}, "", newUrl);
+    };
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
@@ -22,26 +29,38 @@ function Navbar() {
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <a
+                                onClick={() => handleClick("employee")}
                                 className="nav-link active"
                                 aria-current="page"
-                                href="#"
                             >
-                                Home
+                                Employee
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Features
+                            <a
+                                className="nav-link"
+                                id="manager"
+                                onClick={() => handleClick("manager")}
+                            >
+                                Manager
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Pricing
+                            <a
+                                className="nav-link"
+                                id="director"
+                                onClick={() => handleClick("director")}
+                            >
+                                Director
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled" aria-disabled="true">
-                                Disabled
+                            <a
+                                className="nav-link"
+                                id="legend"
+                                onClick={() => handleClick("legend")}
+                            >
+                                Legend
                             </a>
                         </li>
                     </ul>

@@ -1,42 +1,37 @@
 import React from "react";
+import Employee from "../components/Employee";
+import Technical from "../components/Technical";
+import Director from "../components/Director";
+import Manager from "../components/Manager"
+import Legend from "../components/Legend";
 
-function home() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const role = urlParams.get("role");
-
+function home({role}) {
+    
     const renderHome = () => {
         switch (role) {
             case "employee":
-                renderEmployee();
-                break;
+                return <Employee />;
 
             case "technical":
-                renderTechnical();
-                break;
+                return <Technical />;
 
             case "manager":
-                renderManager();
-                break;
+                return <Manager />;
 
             case "director":
-                renderDirector();
+                return <Director />;
+
+            case "legend":
+                return <Legend />;
+            
+            default :
+            return (
+                <>
+                <h1>Inserire un valore query role tra i seguenti per visualizzare la pagina</h1>
+                <p>employee, technical, manager, legend </p>
+                </>
+            )
         }
-    };
-
-    const renderTechnical = () => {
-        return <></>;
-    };
-
-    const renderEmployee = () => {
-        return <></>;
-    };
-
-    const renderManager = () => {
-        return <></>;
-    };
-
-    const renderDirector = () => {
-        return <></>;
     };
 
     return <div>{renderHome()}</div>;

@@ -61,6 +61,7 @@ function Home() {
 
             case "legend":
                 return <Legend />;
+            
 
             default:
                 return (

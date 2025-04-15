@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 function Director() {
-    const [legends, setLegends] = useState([]);
+    const [directors, setDirectors] = useState([]);
     useEffect(() => {
         const dataRequest = async () => {
             try {
@@ -18,8 +18,8 @@ function Director() {
 
                 const data = await response.json();
 
-                const filteredLegends = drawLegend(data);
-                setLegends(filteredLegends);
+                const filteredDirectors = drawDirector(data);
+                setDirectors(filteredDirectors);
 
                 console.log(data);
             } catch (error) {
@@ -29,17 +29,18 @@ function Director() {
         dataRequest();
     }, []);
 
-    const drawLegend = (legends) => {
-        return legends
-            .filter((legend) => {
-                return legend.categoria == "dirigente";
+    const drawDirector = (directors) => {
+        return directors
+            .filter((director) => {
+                return director.categoria == "dirigente";
             })
-            .map((legend) => ({
-                category: legend.categoria,
-                name: legend.nome,
-                surname: legend.cognome,
-                hireDate: legend.dataAssunzione,
-                referralCode: legend.nomeRiferimento,
+            .map((director) => ({
+                category: director.categoria,
+                name: director.nome,
+                surname: director.cognome,
+                cf: director.codiceFiscale,
+                hireDate: director.dataAssunzione,
+                referralName: "N/A",
             }));
     };
 
@@ -47,8 +48,8 @@ function Director() {
         <div>
             <h1 style={{ textAlign: "center" }}>Tutti i Dirigenti</h1>
             <br />
-            {legends.map((legend, index) => (
-                <Card key={index} employer={legend} />
+            {directors.map((director, index) => (
+                <Card key={index} employer={director} />
             ))}
         </div>
     );

@@ -2,43 +2,44 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
 function Employee() {
-    const [legends, setLegends] = useState([]);
+    const [employees, setEmployees] = useState([]);
+
     useEffect(() => {
         const dataRequest = async () => {
             try {
-                const response = await fetch(
-                    `http://its.digitalminds.cloud/Dipendenti.json`
-                );
+                const response = await fetch("http://its.digitalminds.cloud/Dipendenti.json");
 
                 if (!response.ok) {
-                    throw new Error(
-                        `Errore nella richiesta, ${response.message}`
-                    );
+                    throw new Error(`Errore nella richiesta: ${response.statusText}`);
                 }
 
                 const data = await response.json();
 
-                const filteredLegends = drawLegend(data);
-                setLegends(filteredLegends);
+                const directors = data.filter(emp => emp.categoria === "dirigente" || emp.categoria === "manager");
 
-                console.log(data);
+                const codeToNameMap = {};
+                directors.forEach(dir => {
+                    codeToNameMap[dir.codiceFiscale] = dir.nome;
+                });
+
+                
+                const filteredEmployees = data.map(employee => ({
+                    category: employee.categoria,
+                    name: employee.nome,
+                    surname: employee.cognome,
+                    cf: employee.codiceFiscale,
+                    hireDate: employee.dataAssunzione,
+                    referralName: codeToNameMap[employee.nomeRiferimento] || "N/A"
+                }));
+
+                setEmployees(filteredEmployees);
             } catch (error) {
                 console.log(error);
             }
         };
+
         dataRequest();
     }, []);
-
-    const drawLegend = (legends) => {
-        return legends.map((legend) => ({
-            category: legend.categoria,
-            name: legend.nome,
-            surname: legend.cognome,
-            cf: legend.codiceFiscale,
-            hireDate: legend.dataAssunzione,
-            referralCode: legend.nomeRiferimento,
-        }));
-    };
 
     return (
         <div>
@@ -46,6 +47,8 @@ function Employee() {
             <br />
             {legends.map((legend, index) => (
                 <Card key={index} employer={legend} />
+            {employees.map((employee, index) => (
+                <Card key={index} employer={employee} />
             ))}
         </div>
     );

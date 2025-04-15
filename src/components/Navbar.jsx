@@ -9,59 +9,42 @@ function Navbar() {
     };
 
     return (
-        <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                <a
-                    href="../"
-                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-                >
-                    <svg
-                        class="bi me-2"
-                        width="40"
-                        height="32"
-                        aria-hidden="true"
-                    >
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span class="fs-4">IncAgency</span>
-                </a>
+        <nav>
+            <a className="navbar-brand" href="../">
+                <h1>Website</h1>
+            </a>
 
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a
-                            onClick={() => handleClick("employee")}
-                            class="nav-link"
-                        >
-                            Employees
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            onClick={() => handleClick("manager")}
-                            class="nav-link"
-                        >
-                            Manager
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            onClick={() => handleClick("director")}
-                            class="nav-link"
-                        >
-                            Director
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            onClick={() => handleClick("legend")}
-                            class="nav-link"
-                        >
-                            Legend
-                        </a>
-                    </li>
-                </ul>
-            </header>
-        </div>
+            <div className="links">
+                <a
+                    onClick={() => handleClick("employee")}
+                    className="nav-link active"
+                    aria-current="page"
+                >
+                    Employee
+                </a>
+                <a
+                    className="nav-link"
+                    id="manager"
+                    onClick={() => handleClick("manager")}
+                >
+                    Manager
+                </a>
+                <a
+                    className="nav-link"
+                    id="director"
+                    onClick={() => handleClick("director")}
+                >
+                    Director
+                </a>
+                <a
+                    className="nav-link"
+                    id="legend"
+                    onClick={() => handleClick("legend")}
+                >
+                    Legend
+                </a>
+            </div>
+        </nav>
     );
 }
 

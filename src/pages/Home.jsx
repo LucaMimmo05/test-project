@@ -46,6 +46,7 @@ function Home() {
     }
 
     function popUp() {
+        const modalPopup = document.getElementById("modalPopup");
         setModalOverlayTransparency(0.2);
         modalPopup.style.display = "none"; // makes the overlay lighter
     }

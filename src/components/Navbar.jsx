@@ -5,13 +5,13 @@ function Navbar() {
     const handleClick = (role) => {
         const url = new URL(window.location);
         url.searchParams.set("role", role);
-        window.history.pushState({}, '', url);
+        window.history.pushState({}, "", url);
         window.dispatchEvent(new PopStateEvent("popstate"));
     };
 
     return (
         <nav>
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="../">
                 <h1>Website</h1>
             </a>
 

@@ -3,7 +3,6 @@
     flex-direction: column;
     gap: 1rem;
     background-color: #f5f5f5;
-    margin-top: 6rem;
 }
 
 .about-section {
@@ -21,7 +20,7 @@
 
 .modal-abs::before {
     content: "";
-    background-color: var(--overlay-color, #000000e3);
+    background-color: var(--overlay-color, #000000ab);
     backdrop-filter: blur(6px);
     width: 100vw;
     height: 100vh;

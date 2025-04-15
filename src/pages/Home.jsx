@@ -16,6 +16,7 @@ function Home() {
         const cognome = document.getElementById("cognome");
         const email = document.getElementById("email");
         const messaggio = document.getElementById("messaggio");
+        const modalPopup = document.getElementById("modalPopup");
         event.preventDefault();
 
         if (nome.value && cognome.value && email.value && messaggio.value) {

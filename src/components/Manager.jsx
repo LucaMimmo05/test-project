@@ -28,7 +28,7 @@ function Manager() {
             }
         };
 
-        dataRequest(); // Chiamata all'interno di useEffect
+        dataRequest(); 
     }, []);
 
     const drawManager = (managers) => {
@@ -38,8 +38,9 @@ function Manager() {
                 category: manager.categoria,
                 name: manager.nome,
                 surname: manager.cognome,
+                cf:manager.codiceFiscale,
                 hireDate: manager.dataAssunzione,
-                referralCode: manager.nomeRiferimento,
+                referralCode: manager.nomeRiferimento
             }));
     };
 

@@ -15,7 +15,7 @@ function Card({ employer }) {
                     <p className="card-text">Hire date:{employer.hireDate}</p>
                     <p className="card-text">CF: {employer.cf}</p>
                     <p className="card-text">
-                        Refferal code : {employer.refferalCode}
+                        Nome Di Riferimento : {employer.referralName}
                     </p>
                 </div>
             </div>

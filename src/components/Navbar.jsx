@@ -21,7 +21,7 @@ function Navbar() {
                     className="nav-link active"
                     aria-current="page"
                 >
-                    Employee
+                    Tutti i Dipendenti
                 </a>
                 <a
                     className="nav-link"
@@ -35,14 +35,21 @@ function Navbar() {
                     id="director"
                     onClick={() => handleClick("director")}
                 >
-                    Director
+                    Direttori
                 </a>
                 <a
                     className="nav-link"
                     id="legend"
                     onClick={() => handleClick("legend")}
                 >
-                    Legend
+                    Leggende
+                </a>
+                <a
+                    className="nav-link"
+                    id="legend"
+                    onClick={() => handleClick("technical")}
+                >
+                    Tecnici
                 </a>
             </div>
         </nav>

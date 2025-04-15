@@ -3,49 +3,51 @@ import Card from "./Card";
 
 function Legend() {
     const [legends, setLegends] = useState([]);
+
     useEffect(() => {
         const dataRequest = async () => {
             try {
-                const response = await fetch(
-                    `http://its.digitalminds.cloud/Dipendenti.json`
-                );
+                const response = await fetch("http://its.digitalminds.cloud/Dipendenti.json");
 
                 if (!response.ok) {
-                    throw new Error(
-                        `Errore nella richiesta, ${response.message}`
-                    );
+                    throw new Error(`Errore nella richiesta: ${response.statusText}`);
                 }
 
                 const data = await response.json();
 
-                const filteredLegends = drawLegend(data);
-                setLegends(filteredLegends);
+                const referents = data.filter(emp => 
+                    emp.categoria === "manager" || emp.categoria === "dirigente"
+                );
 
-                console.log(data);
+                const codeToNameMap = {};
+                referents.forEach(ref => {
+                    codeToNameMap[ref.codiceFiscale] = ref.nome;
+                });
+
+                const limitDate = new Date("2001-01-01");
+
+                const filteredLegends = data
+                    .filter((legend) => {
+                        const [day, month, year] = legend.dataAssunzione.split("/");
+                        const date = new Date(`${year}-${month}-${day}`);
+                        return date < limitDate;
+                    })
+                    .map((legend) => ({
+                        category: legend.categoria,
+                        name: legend.nome,
+                        surname: legend.cognome,
+                        cf: legend.codiceFiscale,
+                        hireDate: legend.dataAssunzione,
+                        referralName: codeToNameMap[legend.nomeRiferimento] || "N/A"
+                    }));
+
+                setLegends(filteredLegends);
             } catch (error) {
                 console.log(error);
             }
         };
         dataRequest();
     }, []);
-
-    const drawLegend = (legends) => {
-        const limitDate = new Date("2001-01-01");
-        return legends
-            .filter((legend) => {
-                const [day, month, year] = legend.dataAssunzione.split("/");
-                const date = new Date(`${year}-${month}-${day}`);
-                return date < limitDate;
-            })
-            .map((legend) => ({
-                category: legend.categoria,
-                name: legend.nome,
-                surname: legend.cognome,
-                cf:legend.codiceFiscale,
-                hireDate: legend.dataAssunzione,
-                referralCode: legend.nomeRiferimento
-            }));
-    };
 
     return (
         <div>

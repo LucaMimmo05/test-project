@@ -22,8 +22,6 @@ function Legend() {
                 setLegends(filteredLegends);
 
                 console.log(data);
-
-                
             } catch (error) {
                 console.log(error);
             }

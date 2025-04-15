@@ -34,6 +34,7 @@ function Employee() {
             category: legend.categoria,
             name: legend.nome,
             surname: legend.cognome,
+            cf: legend.codiceFiscale,
             hireDate: legend.dataAssunzione,
             referralCode: legend.nomeRiferimento,
         }));
@@ -42,7 +43,7 @@ function Employee() {
     return (
         <div>
             {legends.map((legend, index) => (
-                <Card key={index} legend={legend} />
+                <Card key={index} employer={legend} />
             ))}
         </div>
     );

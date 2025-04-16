@@ -41,14 +41,14 @@ function Home() {
 
     function setModalOverlayTransparency(alpha) {
         const modal = document.getElementById("modalPopup");
-        const color = `rgba(0, 0, 0, ${alpha})`; // e.g. alpha = 0.3
+        const color = `rgba(0, 0, 0, ${alpha})`;
         modal.style.setProperty("--overlay-color", color);
     }
 
     function popUp() {
         const modalPopup = document.getElementById("modalPopup");
         setModalOverlayTransparency(0.2);
-        modalPopup.style.display = "none"; // makes the overlay lighter
+        modalPopup.style.display = "none";
     }
 
     useEffect(() => {
@@ -114,7 +114,7 @@ function Home() {
                                             data-bs-dismiss="modal"
                                             onClick={() => popUp()}
                                         >
-                                            Close
+                                            Chiudi
                                         </button>
                                     </div>
                                 </div>

@@ -56,7 +56,15 @@ function Navbar() {
                             onClick={() => handleClick("legend")}
                             class="nav-link"
                         >
-                            Legend
+                            Leggende
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            onClick={() => handleClick("technical")}
+                            class="nav-link"
+                        >
+                            Tecnici
                         </a>
                     </li>
                 </ul>

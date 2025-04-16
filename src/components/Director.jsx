@@ -7,7 +7,7 @@ function Director() {
         const dataRequest = async () => {
             try {
                 const response = await fetch(
-                    `http://its.digitalminds.cloud/Dipendenti.json`
+                    `https://sample-apis-sigma.vercel.app/api/dipendenti`
                 );
 
                 if (!response.ok) {
@@ -48,9 +48,11 @@ function Director() {
         <div>
             <h1 style={{ textAlign: "center" }}>Tutti i Dirigenti</h1>
             <br />
+            <div className="grid-cont">
             {directors.map((director, index) => (
                 <Card key={index} employer={director} />
             ))}
+            </div>
         </div>
     );
 }

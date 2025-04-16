@@ -8,7 +8,7 @@ function Manager() {
         const dataRequest = async () => {
             try {
                 const response = await fetch(
-                    "http://its.digitalminds.cloud/Dipendenti.json"
+                    "https://sample-apis-sigma.vercel.app/api/dipendenti"
                 );
 
                 if (!response.ok) throw new Error("Errore nella richiesta");
@@ -38,7 +38,8 @@ function Manager() {
                         cf: manager.codiceFiscale,
                         hireDate: manager.dataAssunzione,
                         referralName:
-                            codeToNameMap[manager.nomeRiferimento] + " "+
+                            codeToNameMap[manager.nomeRiferimento] +
+                                " " +
                                 codeToSurnameMap[manager.nomeRiferimento] ||
                             "N/A",
                     }));
@@ -52,15 +53,15 @@ function Manager() {
         dataRequest();
     }, []);
 
-    
-
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>Tutti i Manager</h1>
             <br />
-            {managers.map((manager, index) => (
-                <Card key={index} employer={manager} />
-            ))}
+            <div className="grid-cont">
+                {managers.map((manager, index) => (
+                    <Card key={index} employer={manager} />
+                ))}
+            </div>
         </div>
     );
 }

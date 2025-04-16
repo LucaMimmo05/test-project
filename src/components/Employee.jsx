@@ -8,7 +8,7 @@ function Employee() {
         const dataRequest = async () => {
             try {
                 const response = await fetch(
-                    "http://its.digitalminds.cloud/Dipendenti.json"
+                    "https://sample-apis-sigma.vercel.app/api/dipendenti"
                 );
 
                 if (!response.ok) {
@@ -53,9 +53,11 @@ function Employee() {
         <div>
             <h1 style={{ textAlign: "center" }}>Tutti i dipendenti</h1>
             <br />
-            {employees.map((employee, index) => (
-                <Card key={index} employer={employee} />
-            ))}
+            <div className="grid-cont">
+                {employees.map((employee, index) => (
+                    <Card key={index} employer={employee} />
+                ))}
+            </div>
         </div>
     );
 }

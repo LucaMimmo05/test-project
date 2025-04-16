@@ -3,26 +3,30 @@ import Card from "./Card";
 
 function Technical() {
     const [technicals, setTechnicals] = useState([]);
-    
 
     useEffect(() => {
         const dataRequest = async () => {
             try {
-                const response = await fetch("http://its.digitalminds.cloud/Dipendenti.json");
+                const response = await fetch(
+                    "https://sample-apis-sigma.vercel.app/api/dipendenti"
+                );
 
                 if (!response.ok) {
-                    throw new Error(`Errore nella richiesta: ${response.statusText}`);
+                    throw new Error(
+                        `Errore nella richiesta: ${response.statusText}`
+                    );
                 }
 
                 const data = await response.json();
-                
 
-                const referedirents = data.filter(emp => 
-                  emp.categoria === "manager" || emp.categoria === "dirigente"
-              );
+                const referedirents = data.filter(
+                    (emp) =>
+                        emp.categoria === "manager" ||
+                        emp.categoria === "dirigente"
+                );
 
                 const codeToNameMap = {};
-                referedirents.forEach(dir => {
+                referedirents.forEach((dir) => {
                     codeToNameMap[dir.codiceFiscale] = dir.nome;
                 });
 
@@ -34,7 +38,8 @@ function Technical() {
                         surname: employee.cognome,
                         cf: employee.codiceFiscale,
                         hireDate: employee.dataAssunzione,
-                        referralName: codeToNameMap[employee.nomeRiferimento] || "N/A"
+                        referralName:
+                            codeToNameMap[employee.nomeRiferimento] || "N/A",
                     }));
 
                 setTechnicals(filteredTechnicals);
@@ -48,9 +53,13 @@ function Technical() {
 
     return (
         <div>
-            {technicals.map((technical, index) => (
-                <Card key={index} employer={technical} />
-            ))}
+            <h1 style={{ textAlign: "center" }}>Tutti i tecnici</h1>
+            <br />
+            <div className="grid-cont">
+                {technicals.map((technical, index) => (
+                    <Card key={index} employer={technical} />
+                ))}
+            </div>
         </div>
     );
 }

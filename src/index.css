@@ -7,3 +7,8 @@
 a {
     cursor: pointer;
 }
+
+.grid-cont {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}

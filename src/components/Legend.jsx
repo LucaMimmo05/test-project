@@ -7,20 +7,26 @@ function Legend() {
     useEffect(() => {
         const dataRequest = async () => {
             try {
-                const response = await fetch("http://its.digitalminds.cloud/Dipendenti.json");
+                const response = await fetch(
+                    "https://sample-apis-sigma.vercel.app/api/dipendenti"
+                );
 
                 if (!response.ok) {
-                    throw new Error(`Errore nella richiesta: ${response.statusText}`);
+                    throw new Error(
+                        `Errore nella richiesta: ${response.statusText}`
+                    );
                 }
 
                 const data = await response.json();
 
-                const referents = data.filter(emp => 
-                    emp.categoria === "manager" || emp.categoria === "dirigente"
+                const referents = data.filter(
+                    (emp) =>
+                        emp.categoria === "manager" ||
+                        emp.categoria === "dirigente"
                 );
 
                 const codeToNameMap = {};
-                referents.forEach(ref => {
+                referents.forEach((ref) => {
                     codeToNameMap[ref.codiceFiscale] = ref.nome;
                 });
 
@@ -28,7 +34,8 @@ function Legend() {
 
                 const filteredLegends = data
                     .filter((legend) => {
-                        const [day, month, year] = legend.dataAssunzione.split("/");
+                        const [day, month, year] =
+                            legend.dataAssunzione.split("/");
                         const date = new Date(`${year}-${month}-${day}`);
                         return date < limitDate;
                     })
@@ -38,7 +45,8 @@ function Legend() {
                         surname: legend.cognome,
                         cf: legend.codiceFiscale,
                         hireDate: legend.dataAssunzione,
-                        referralName: codeToNameMap[legend.nomeRiferimento] || "N/A"
+                        referralName:
+                            codeToNameMap[legend.nomeRiferimento] || "N/A",
                     }));
 
                 setLegends(filteredLegends);
@@ -55,9 +63,11 @@ function Legend() {
                 Dipendenti che lavorano dal 2001
             </h1>
             <br />
-            {legends.map((legend, index) => (
-                <Card key={index} employer={legend} />
-            ))}
+            <div className="grid-cont">
+                {legends.map((legend, index) => (
+                    <Card key={index} employer={legend} />
+                ))}
+            </div>
         </div>
     );
 }
